@@ -14,13 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from tour import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('',views.home,name='home'),
     path('all_user/',views.all_user,name='all_user'),
     path('add_destination/',views.add_destination,name='add_destination'),
@@ -33,7 +34,7 @@ urlpatterns = [
     path('blog/',views.blog,name='blog'),
     path('view_blog_detail/<int:pid>/',views.view_blog_detail,name='view_blog_detail'),
     path('signup/',views.user_sign,name='signup'),
-    path('login/',views.user_login,name='login'),
+    path('accounts/login/',views.user_login,name='login'),
     path('logout/',views.user_logout,name='logout'),
     path('search/',views.search,name='search'),
     path('my_booking/',views.my_booking,name='my_booking'),
@@ -45,7 +46,6 @@ urlpatterns = [
     path('view_profile/',views.view_profile,name='view_profile'),
     path('edit_profile/',views.edit_profile,name='edit_profile'),
     path('Change_Password/',views.Change_Password,name='Change_Password'),
-
     path('add_blog/',views.add_blog,name='add_blog'),
     path('delete_blog/<int:pid>',views.delete_blog,name='delete_blog'),
     path('admin_viewblog/',views.admin_viewblog,name='admin_viewblog'),
